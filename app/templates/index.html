@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block content %}
+	<h1>Welcome to Beaver.app</h1>
+	<p>Enter your parameters:</p>
+	<form action={{ url_for('success') }} method="POST">
+        {{ form.hidden_tag() }}
+        <p>
+            {{ form.material_size.label }}<br>
+            {{ form.material_size(size=25) }}
+        </p>
+        <p>
+            {{ form.item_list.label }}<br>
+            {{ form.item_list(size=64) }}
+        </p>
+        <p>{{ form.submit() }}</p>
+    </form>
+{% endblock %}
