@@ -3,7 +3,7 @@
 {% block content %}
 	<h1>Welcome to Beaver.app</h1>
 	<p>Enter your parameters:</p>
-	<form action={{ url_for('success') }} method="POST">
+	<form action={{ url_for('cut') }} method="POST">
         {{ form.hidden_tag() }}
         <p>
             {{ form.material_size.label }}<br>
