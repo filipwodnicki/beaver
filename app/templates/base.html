@@ -4,6 +4,16 @@
 Woodcutting Algorithm
 {% endblock %}
 
+{% block head %}
+{{ super() }}
+<style type="text/css">
+	body {
+    padding-bottom: 50px;
+	}
+</style>
+
+{% endblock %}
+
 {% block navbar %}
 <nav class="navbar navbar-default">
         <div class="container">
@@ -32,7 +42,7 @@ Woodcutting Algorithm
 {% block content %}
 	<div class="container">
 	{% block app_content %}{% endblock %}
-	
+
 	</div>
 	
 
