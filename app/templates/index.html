@@ -55,7 +55,7 @@
                     $('#load').text(data['payload']);
                     $('#time').text(data['time']);
                 }).fail(function() {
-                    $('#load').text('Error: Could not contact server.');
+                    $('#load').text('Error: Could not calculate optimal placement. Check values.');
                 });
                 event.preventDefault(); // block the traditional submission of the form.
             });
