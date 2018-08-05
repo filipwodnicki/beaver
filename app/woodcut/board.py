@@ -26,7 +26,7 @@ class Board(object):
             raise Exception('piece not on the Board!')
 
     def __repr__(self):
-        return str( '<Board with items {}>'.format(self.contents)) 
+        return str( '<Board with items {}, unused space: {}>'.format(self.contents, self.space_remaining)) 
 
     def __str__(self):
         return self.contents

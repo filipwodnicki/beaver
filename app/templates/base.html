@@ -49,6 +49,7 @@ Woodcutting Algorithm
 	            .done( function(data){
 	            	// alert(data['payload']);
 	            	$('#load').text(data['payload']);
+	            	$('#time').text(data['time']);
 	            }).fail(function() {
 	            	$('#load').text('Error: Could not contact server.');
 	            });
