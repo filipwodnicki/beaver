@@ -1,9 +1,13 @@
+import os
+import logging
+from logging.handlers import RotatingFileHandler
 from flask import Flask
 from flask_bootstrap import Bootstrap
 
 app = Flask(__name__)
 bootstrap = Bootstrap(app)
 app.config['SECRET_KEY'] = 'you-will-never-guess'
+app.config['LOG_TO_STDOUT'] = os.environ.get('LOG_TO_STDOUT')
 
 if not app.debug and not app.testing:
 	if app.config['LOG_TO_STDOUT']:
