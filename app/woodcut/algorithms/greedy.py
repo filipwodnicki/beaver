@@ -2,13 +2,13 @@ from app.woodcut.board import Board
 
 
 
-def greedy_algorithm( pieces ):
+def greedy_algorithm( pieces, material_size ):
 
     board_collection = []
 
     # Algorithm
 
-    board_collection.append(Board())
+    board_collection.append(Board(material_size))
 
     pieces.sort(reverse=True)  # sort in ascending order
 
@@ -26,7 +26,7 @@ def greedy_algorithm( pieces ):
         if try_placing(piece) == True:
             pass
         else:
-            board_collection.append(Board())
+            board_collection.append(Board(material_size))
             board_collection[-1].insert(piece)
             pieces.remove(piece)
 

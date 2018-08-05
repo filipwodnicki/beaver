@@ -22,7 +22,7 @@ def cut():
 		material_size = form.material_size.data
 		#input is string, which we need to split, convert each element to float and output as a new list
 		item_list_of_float = [float(i) for i in form.item_list.data.split(',')] 
-		response = greedy_algorithm(item_list_of_float)
+		response = greedy_algorithm(item_list_of_float, material_size)
 		end = time.time()
 		elapsed = "Calculation time: " + str( "{0:.6f}".format( end - start ) ) + " seconds."
 		return jsonify({ "payload" : response, "time" : elapsed })

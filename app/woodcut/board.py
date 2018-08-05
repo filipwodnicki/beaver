@@ -1,7 +1,7 @@
 class Board(object):
-    board_length = 2050.
 
-    def __init__(self):
+    def __init__(self, material_size):
+        self.board_length = material_size
         self.contents = []
         self.space_remaining = self.board_length
 

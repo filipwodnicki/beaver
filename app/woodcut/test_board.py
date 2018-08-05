@@ -1,6 +1,7 @@
+import unittest
 from unittest import TestCase
 
-from dev.board import Board
+from board import Board
 
 
 class TestBoard(TestCase):
@@ -9,7 +10,7 @@ class TestBoard(TestCase):
 
     def test_insert_type(self):
 
-        b = Board()
+        b = Board(2050.)
 
         self.assertRaises(Exception, b.insert, 'car') # assert string fails
 
@@ -28,19 +29,19 @@ class TestBoard(TestCase):
 
     def test_insert_size(self): #assert can't insert something big. (max board size = 2050)
 
-        b = Board()
+        b = Board(2050.)
 
         with self.assertRaises(Exception):
             b.insert(1000)
             b.insert(1000)
             b.insert(51)
 
-        b2 = Board()
+        b2 = Board(2050.)
 
         self.assertRaises(Exception, b2.insert, 2051)
 
     def test_insert_space(self): # assert space remaining works as planned
-        b = Board()
+        b = Board(2050.)
 
         b.insert(100)
 
@@ -54,7 +55,7 @@ class TestBoard(TestCase):
 
     def test_remove(self):
 
-        b = Board()
+        b = Board(2050.)
         b.insert(50)
 
         # assert can't remove something that doesn't exist
@@ -68,3 +69,6 @@ class TestBoard(TestCase):
         self.assertRaises(Exception, b.remove, 50)
         # assert space remaining works correctly
         self.assertEquals(b.space_remaining, 2050)
+
+if __name__ == '__main__':
+    unittest.main()
