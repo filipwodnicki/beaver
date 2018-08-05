@@ -4,15 +4,20 @@
 {% block app_content %}
 	<div class="row">
         <div class="col-md-7">
-        <h1>Woodcutting Algorithm</h1>
-        <br>
-        <p>This algorithm takes Material Size and Item List as inputs. It returns the optimal placement of items on the board. More info in <a href="{{ url_for('about')}}">About</a>.</p>
-        <br>
-        <br>
-    	<p>Enter your parameters:</p>
+            <h1>Woodcutting Algorithm</h1>
+            <br>
+            <p>This algorithm takes Material Size and Item List as inputs. It returns the optimal placement of items on the board. More info in <a href="{{ url_for('about')}}">About</a>.</p>
         </div>
     </div>
-	
+
+    <div class="row">
+        <div class="col-md-7">
+            <h2>Input</h2>
+            <br>
+        	<p>Enter your parameters:</p>
+        </div>
+    </div>
+
     <div class="row">
         <div class="col-md-7">
             <form class="form" id="calc">
@@ -27,6 +32,7 @@
     <hr>
     <div class="row">
         <div class="col-md-5">
+        <span id="output"></span>
         <p id="load"></p>
         <p id="time"></p>
         </div>
@@ -45,6 +51,7 @@
                 $.post('/cut', $('form').serialize() )
                 .done( function(data){
                     // alert(data['payload']);
+                    $('#output').html('<h2>Output</h2>');
                     $('#load').text(data['payload']);
                     $('#time').text(data['time']);
                 }).fail(function() {
