@@ -1,18 +1,17 @@
 {% extends 'bootstrap/base.html' %}
 
 {% block title %}
-Woodcutting Algorithm
+Woodcut Algorithm
 {% endblock %}
 
-{% block head %}
+{% block html_attribs %} lang="en"{% endblock %}
+
+{% block styles %}
 {{ super() }}
-<style type="text/css">
-	body {
-    padding-bottom: 50px;
-	}
-</style>
-
+<link rel="stylesheet" href="{{url_for('static', filename='mystyle.css')}}">
 {% endblock %}
+
+
 
 {% block navbar %}
 <nav class="navbar navbar-default">
@@ -42,15 +41,21 @@ Woodcutting Algorithm
 {% block content %}
 	<div class="container">
 	{% block app_content %}{% endblock %}
-
 	</div>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
 	
 
-	<footer class="page-footer">
-		<div class="container navbar navbar-fixed-bottom">
-			<span>&copy; 2018 by Filip Wodnicki</span>
-		</div>
-	</footer>
+    <div id="footer">
+    <div class="container">
+      <p>&copy; 2018 by Filip Wodnicki</p>
+    </div>
+  </div>
+	
 	
 
 
