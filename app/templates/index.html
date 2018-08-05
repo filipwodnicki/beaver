@@ -3,14 +3,18 @@
 
 {% block app_content %}
 	<div class="row">
-        <div class="col-md-12">
+        <div class="col-md-7">
         <h1>Woodcutting Algorithm</h1>
+        <br>
+        <p>This algorithm takes Material Size and Item List as inputs. It returns the optimal placement of items on the board. More info in <a href="{{ url_for('about')}}">About</a>.</p>
+        <br>
+        <br>
     	<p>Enter your parameters:</p>
         </div>
     </div>
 	
     <div class="row">
-        <div class="col-md-5">
+        <div class="col-md-7">
             <form class="form" id="calc">
             {{ wtf.form_errors(form) }}
             {{ wtf.form_field(form.material_size) }}
@@ -27,8 +31,36 @@
         <p id="time"></p>
         </div>
     </div>
+{% endblock %}
 
 
+{%block app_scripts %}
+    <script>
+        $(document).ready(function() {
 
+            $('form').submit(function (event) {
 
+                $('#load').html('<img src="{{ url_for('static', filename='loading.gif') }}">');
+
+                $.post('/cut', $('form').serialize() )
+                .done( function(data){
+                    // alert(data['payload']);
+                    $('#load').text(data['payload']);
+                    $('#time').text(data['time']);
+                }).fail(function() {
+                    $('#load').text('Error: Could not contact server.');
+                });
+                event.preventDefault(); // block the traditional submission of the form.
+            });
+            // Inject our CSRF token into our AJAX request.
+            
+            $.ajaxSetup({
+                beforeSend: function(xhr, settings) {
+                    if (!/^(GET|HEAD|OPTIONS|TRACE)$/i.test(settings.type) && !this.crossDomain) {
+                        xhr.setRequestHeader("X-CSRFToken", "{{ form.csrf_token._value() }}")
+                    }
+                }
+            });
+        });
+    </script>
 {% endblock %}

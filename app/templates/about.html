@@ -1,11 +1,35 @@
-{ % extends "base.html" %}
+{% extends "base.html" %}
 
-<h1>About</h1>
-
-<p>Woodcut algorithm is a simple app designed by Filip Wodnicki.</p>
-
-<h3>Changelog</h3>
-<ul>
-<li>
-<li><b>July 31, 2017. First github commit.</li>
-</ul>
+{% block app_content %}
+	<div class="row">
+        <div class="col-md-8">
+        	<h1>About</h1>
+        	<p>Woodcut algorithm is a simple app built by Filip Wodnicki.</p>
+        	<p>The app runs on <a href="http://flask.pocoo.org">Flask</a>, a simple Python web framework. The backend runs Python 3.6. Miguel Grinberg's clear, concise and generally excellent <a href="https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-i-hello-world">Flask Mega Tutorial</a> provided inspiration to build this simple web app.</p>
+        	<p>Here is the <a href="https://github.com/bananalytics/beaver">Github repo</a>.</p>
+        </div>
+    </div>
+	<hr>
+    <div class="row">
+        <div class="col-md-6">
+        	<h3>Algorithm description</h3>
+        	<br>
+        	<h4>Greedy Algorithm</h4>
+        	<p>The first algoritm implemented is a <a href="https://en.wikipedia.org/wiki/Greedy_algorithm">greedy algorithm</a>.</p>
+        	<ol>
+        	<li>Sorts input pieces by size</li>
+        	<li>Creates the first Board which will be output</li>
+        	<li>Tries to arrange the largest item on the Board</li>
+        	<li>If there is space, the item is placed.</li>
+        	<li>If there is no space, a new Board is taken off the shelf and the item is added there.
+        	<li>Repeat #3-5 for each item. Returns solution. Done.</li>
+        	</ol>
+        </div>
+        <div class="col-md-6">
+        	<h3>Changelog</h3>
+        	<p><b>Aug 5, 2018</b><br> Woodcut v0.1 is live!
+			<p><b>July 31, 2017</b><br> First github commit. Project started.</p>
+        </div>
+    </div>
+	
+{% endblock %}
