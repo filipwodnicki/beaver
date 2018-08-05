@@ -1,18 +1,33 @@
 {% extends "base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
 
-{% block content %}
-	<h1>Welcome to Beaver.app</h1>
-	<p>Enter your parameters:</p>
-	<form action={{ url_for('cut') }} method="POST">
-        {{ form.hidden_tag() }}
-        <p>
-            {{ form.material_size.label }}<br>
-            {{ form.material_size(size=25) }}
-        </p>
-        <p>
-            {{ form.item_list.label }}<br>
-            {{ form.item_list(size=64) }}
-        </p>
-        <p>{{ form.submit() }}</p>
-    </form>
+{% block app_content %}
+	<div class="row">
+        <div class="col-md-12">
+        <h1>Woodcutting Algorithm</h1>
+    	<p>Enter your parameters:</p>
+        </div>
+    </div>
+	
+    <div class="row">
+        <div class="col-md-5">
+            <form class="form" id="calc">
+            {{ wtf.form_errors(form) }}
+            {{ wtf.form_field(form.material_size) }}
+            {{ wtf.form_field(form.item_list) }}
+            {{ form.hidden_tag() }}
+            {{ wtf.form_field(form.submit)}}
+            </form>
+        </div>
+    </div>
+    <hr>
+    <div class="row">
+        <div class="col-md-5">
+        <span id="load"></span>
+        </div>
+    </div>
+
+
+
+
 {% endblock %}
