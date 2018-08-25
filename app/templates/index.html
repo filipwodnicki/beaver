@@ -34,6 +34,19 @@
     <div class="row">
         <div class="col-md-5">
         <span id="output"></span>
+        </div>
+    </div>
+    <br>
+    <br>
+    <div class="row">
+        <div class="col-md-8" id="chartdiv">
+            <canvas id="myChart" height=10 width=8></canvas>
+        </div>
+    </div>
+    <br>
+    <br>
+    <div class="row">
+        <div class="col-md-5">
         <p id="load"></p>
         <p id="time"></p>
         </div>
@@ -42,17 +55,92 @@
 
 
 {%block app_scripts %}
+    <!-- Chart.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.0/Chart.min.js"></script>
+    <!-- Chart.js labels extension -->
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script> 
+
     <script>
         $(document).ready(function() {
 
             $('form').submit(function (event) {
 
+                $('#myChart').remove()
+                $('#chartdiv').append('<canvas id="myChart" height=10 width=8></canvas>')
+
                 $('#load').html('<img src="{{ url_for('static', filename='loading.gif') }}">');
 
                 $.post('/cut', $('form').serialize() )
                 .done( function(data){
-                    // alert(data['payload']);
+
                     $('#output').html('<h2>Output</h2>');
+                    var num_boards = data['charty']['num_boards'];
+                    $('#myChart').attr('height', num_boards);
+
+                    var ctx = document.getElementById('myChart').getContext('2d');
+
+                    var myDatasets = [];
+
+                    // console.log( data['charty']);
+                    // console.log( data['charty']['output']);
+
+                    for (item in data['charty']['output']) {
+                        myDatasets.push(
+                            {
+                            label: "Piece",
+                            backgroundColor: 'brown',
+                            borderColor: 'black',
+                            borderWidth: 2,
+                            data : data['charty']['output'][item],
+                            })
+                        }
+                    myDatasets.push(
+                        {
+                            label: "Unused",
+                            backgroundColor: 'pink',
+                            borderColor: 'red',
+                            borderWidth: 2,
+                            data: data['charty']['unused'],
+                        }
+                        );
+                    // console.log(myDatasets);
+
+                    var chart = new Chart(ctx, {
+                    // The type of chart we want to create
+                    type: 'horizontalBar',
+
+                    // The data for our dataset
+                    data: {
+                        labels: data['charty']['labels'],
+                        datasets: myDatasets
+                    },
+
+                    // Configuration options go here
+                    options: {
+                        plugins : {
+                            datalabels : {
+                                backgroundColor : 'white',
+                                color : 'black',
+                                borderRadius : 4,
+                                font : {
+                                    weight : 'bold',
+                                }
+                            }
+                        },
+                        scales: {
+                            xAxes: [{
+                                stacked: true,
+                            }],
+                            yAxes: [{
+                                stacked: true,
+                            }]
+
+                        },
+                    }
+                });
+                Chart.defaults.global.plugins.datalabels.display = true
+
+                }).done(function (data){
                     $('#load').text(data['payload']);
                     $('#time').text(data['time']);
                 }).fail(function() {
