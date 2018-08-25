@@ -6,8 +6,8 @@
         <div class="col-md-7">
             <h1>Woodcut Algorithm</h1>
             <br>
-            <p>Wood cutting is an application of the <a href="https://en.wikipedia.org/wiki/Cutting_stock_problem">Cutting Stock Problem</a>. This app demonstrates a solution to lay out wood pieces for cutting in way that minimizes waste.</p>
-            <p>The tool takes Material Size and Item List as inputs. It returns the optimal placement of wood pieces on a board, for production optimization. More info in <a href="{{ url_for('about')}}">About</a>.</p>
+            <p>This app will tell you how to cut wood pieces from boards in a way that creates minimum waste.</p>
+            <p>Input your <b>board size</b> and <b>list of pieces</b> you want to cut. The app then returns the optimal placement of your pieces on a board. More info in <a href="{{ url_for('about')}}">About</a>.</p>
         </div>
     </div>
 
@@ -68,12 +68,12 @@
                 $('#myChart').remove()
                 $('#chartdiv').append('<canvas id="myChart" height=10 width=8></canvas>')
 
-                $('#load').html('<img src="{{ url_for('static', filename='loading.gif') }}">');
+                $('#time').html('<img src="{{ url_for('static', filename='loading.gif') }}">');
 
                 $.post('/cut', $('form').serialize() )
                 .done( function(data){
 
-                    $('#output').html('<h2>Output</h2>');
+                    $('#output').html('<h2>Solution</h2>');
                     var num_boards = data['charty']['num_boards'];
                     $('#myChart').attr('height', num_boards);
 
@@ -141,7 +141,7 @@
                 Chart.defaults.global.plugins.datalabels.display = true
 
                 }).done(function (data){
-                    $('#load').text(data['payload']);
+                    // $('#load').text(data['payload']);
                     $('#time').text(data['time']);
                 }).fail(function() {
                     $('#load').text('Error: Could not calculate optimal placement. Check values.');
