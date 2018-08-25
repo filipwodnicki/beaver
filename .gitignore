@@ -17,4 +17,5 @@ develop-eggs
 .installed.cfg
 lib
 lib64
+ipynb
 __pycache__
