@@ -1,36 +1,3 @@
-from app.woodcut.board import Board
-
-
-def greedy_algorithm( pieces, material_size ):
-
-    board_collection = []
-
-    # Algorithm
-
-    board_collection.append(Board(material_size))
-
-    pieces.sort(reverse=True)  # sort in ascending order
-
-    def try_placing(piece):
-        for board in board_collection:
-            if board.space_remaining >= piece:
-                board.insert(piece)
-                pieces.remove(piece)
-                return True
-        return False
-
-    for piece in pieces[:]:  # pieces[:] is a copy for the purposes of the algorithm, otherwise our pieces[] would get modified
-
-        #     print ( board_collection[0].contents )
-        if try_placing(piece) == True:
-            pass
-        else:
-            board_collection.append(Board(material_size))
-            board_collection[-1].insert(piece)
-            pieces.remove(piece)
-
-    return board_collection
-
 def chartify(board_collection):
     """Take a Board_collection result and returns output in a format the Chart.js accepts:
     This format is master list of lists. Each list is all nth items from all Boards"""
@@ -40,8 +7,8 @@ def chartify(board_collection):
 
     # Get the max # of items in a single board
     for board in board_collection:
-        if len(board.contents) > max_num_items:
-            max_num_items = len(board.contents)
+        if len(board.items) > max_num_items:
+            max_num_items = len(board.items)
     ##### FUTURE: complete this step in as few lines as possible 
 
     # Generate Labels based on the number of Boards present
@@ -63,7 +30,7 @@ def chartify(board_collection):
     ##### FUTURE: complete this step in as few lines as possible 
 
     for counter1, board in enumerate(board_collection):
-        for counter2, value in enumerate(board.contents):
+        for counter2, value in enumerate(board.items):
             output[counter2][counter1] = value
 
 

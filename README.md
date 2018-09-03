@@ -4,7 +4,9 @@ Woodcut Algorithm is a simple app built by Filip Wodnicki.
 
 ## Project Description  
 
-The app implements a solution to the <a href="https://en.wikipedia.org/wiki/Cutting_stock_problem">Cutting Stock Problem</a>, which describes how to optimally use material in a production process.  
+The app visualizes a solution to the <a href="https://en.wikipedia.org/wiki/Cutting_stock_problem">Cutting Stock Problem</a>, which describes how to optimally use material in a production process.  
+
+The Algorithms are implemented via the Package [custo](https://github.com/filipwodnicki/custo).  
 
 * <a href="https://github.com/bananalytics/beaver">Github repo</a>  
 * <a href="https://woodcut-algorithm.herokuapp.com/about">Live app</a>  
@@ -35,6 +37,10 @@ Interestingly, Fit-first has been shown to always give results within 20-25% of 
   
   
 ## Changelog
+
+* __Sep 3, 2018__
+v0.3 Refactored to import Cutting Stock Problem Algorithms from [custo](https://github.com/filipwodnicki/custo)
+
 * __Aug 25, 2018__  
 v0.2 Implemented visualization using Chart.js  
 
