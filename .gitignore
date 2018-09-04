@@ -17,5 +17,10 @@ develop-eggs
 .installed.cfg
 lib
 lib64
+
+
 ipynb
 __pycache__
+
+.idea
+.ipynb_checkpoints
